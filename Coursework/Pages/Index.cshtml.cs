@@ -19,7 +19,6 @@ namespace Coursework.Pages
 
         public void OnGet()
         {
-
         }
     }
 }
