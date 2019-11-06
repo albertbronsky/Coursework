@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Coursework.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Coursework.Data
@@ -9,5 +10,10 @@ namespace Coursework.Data
             : base(options)
         {
         }
+        
+        public DbSet<Question> Question { get; set; }
+        public DbSet<Answer> Answer { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Country> Country { get; set; }
     }
 }

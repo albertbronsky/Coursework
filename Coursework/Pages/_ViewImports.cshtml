@@ -3,3 +3,7 @@
 @using Coursework.Data
 @namespace Coursework.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Coursework.Authorization;
+@using Microsoft.AspNetCore.Authorization;
+@using Coursework.Models;
+@inject IAuthorizationService AuthorizationService

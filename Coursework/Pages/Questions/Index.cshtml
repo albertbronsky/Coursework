@@ -1,0 +1,69 @@
+@page
+@model Coursework.Pages.Questions.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Question[0].Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question[0].Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question[0].DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question[0].Status)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Question)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if ((await AuthorizationService.AuthorizeAsync(
+                    User, item,
+                    QuestionOperations.Update)).Succeeded)
+                {
+                    <a asp-page="./Edit" asp-route-id="@item.QuestionId">Edit</a>
+                    <text> | </text>
+                }
+
+                <a asp-page="./Details" asp-route-id="@item.QuestionId">Details</a>
+
+                @if ((await AuthorizationService.AuthorizeAsync(
+                    User, item,
+                    QuestionOperations.Delete)).Succeeded)
+                {
+                    <text> | </text>
+                    <a asp-page="./Delete" asp-route-id="@item.QuestionId">Delete</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

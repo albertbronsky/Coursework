@@ -1,3 +1,4 @@
+using Coursework.Authorization;
 using Coursework.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
