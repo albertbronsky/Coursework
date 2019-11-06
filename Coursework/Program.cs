@@ -21,4 +21,3 @@ namespace Coursework
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }
-//test
