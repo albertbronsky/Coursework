@@ -9,7 +9,7 @@
 
 <div>
     <h4>Question</h4>
-    <hr />
+    <hr/>
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Question.Title)
@@ -38,6 +38,21 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Question.QuestionId">Edit</a> |
+    @if ((await AuthorizationService.AuthorizeAsync(
+        User, Model.Question,
+        QuestionOperations.Update)).Succeeded)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Question.QuestionId">Edit</a>
+        <text> | </text>
+    }
+
+    @if ((await AuthorizationService.AuthorizeAsync(
+        User, Model.Question,
+        QuestionOperations.Delete)).Succeeded)
+    {
+        <a asp-page="./Delete" asp-route-id="@Model.Question.QuestionId">Delete</a>
+        <text> | </text>
+    }
+
     <a asp-page="./Index">Back to List</a>
 </div>

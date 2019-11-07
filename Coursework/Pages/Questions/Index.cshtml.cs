@@ -22,7 +22,7 @@ namespace Coursework.Pages.Questions
 
         public void OnGet()
         {
-            Question = _context.Question.FromSqlRaw("SELECT * FROM dbo.Question;").ToList();
+            Question = _context.Question.FromSqlRaw("SELECT * FROM main.Question;").ToList();
         }
     }
 }
