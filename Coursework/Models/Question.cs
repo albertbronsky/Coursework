@@ -15,7 +15,9 @@ namespace Coursework.Models
 
         [DataType(DataType.Date)] public DateTime? DateModified { get; set; }
 
-        public QuestionStatus Status { get; set; }
+        public QuestionStatus Status { get; set; } = QuestionStatus.Opened;
+
+        public int Score { get; set; } = 0;
         //public List<int> LikedBy = new List<int>();
         //public List<int> DislikedBy = new List<int>();
     }

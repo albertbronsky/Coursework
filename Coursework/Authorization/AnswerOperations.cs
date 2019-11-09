@@ -2,7 +2,7 @@
 
 namespace Coursework.Authorization
 {
-    public class QuestionOperations
+    public class AnswerOperations
     {
         public static OperationAuthorizationRequirement Create =
             new OperationAuthorizationRequirement { Name = Constants.CreateOperationName };

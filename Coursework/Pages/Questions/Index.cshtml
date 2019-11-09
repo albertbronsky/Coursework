@@ -25,7 +25,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Question[0].Status)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question[0].Score)
+        </th>
+        <th>
+            Actions
+        </th>
     </tr>
     </thead>
     <tbody>
@@ -43,6 +48,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
             </td>
             <td>
                 @if ((await AuthorizationService.AuthorizeAsync(

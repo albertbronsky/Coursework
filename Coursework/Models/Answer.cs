@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Coursework.Models
 {
@@ -19,6 +20,8 @@ namespace Coursework.Models
         public Question Question { get; set; }
 
         public bool Accepted { get; set; }
+        public int Score { get; set; }
+
         //public List<int> LikedBy = new List<int>();
         //public List<int> DislikedBy = new List<int>();
     }
