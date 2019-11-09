@@ -12,7 +12,10 @@ namespace Coursework.Data
         }
         
         public DbSet<Question> Question { get; set; }
+        public DbSet<QuestionVote> QuestionVote { get; set; }
         public DbSet<Answer> Answer { get; set; }
+        public DbSet<AnswerVote> AnswerVote { get; set; }
+        
         public DbSet<Category> Category { get; set; }
         public DbSet<Country> Country { get; set; }
     }

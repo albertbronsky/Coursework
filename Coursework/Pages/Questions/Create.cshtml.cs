@@ -56,7 +56,7 @@ namespace Coursework.Pages.Questions
             const int defaultStatus = (int) QuestionStatus.Opened;
 
             Context.Database.ExecuteSqlRaw(
-                "INSERT INTO main.Question (OwnerId, Title, Description, DateCreated, DateModified, Status) " +
+                $"INSERT INTO main.Question (OwnerId, Title, Description, DateCreated, DateModified, Status) " +
                 $"VALUES ('{ownerId}', '{title}', '{description}', '{dateCreated}', NULL, {defaultStatus});");
             await Context.SaveChangesAsync();
 

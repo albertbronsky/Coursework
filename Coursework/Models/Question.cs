@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Coursework.Models
@@ -18,10 +19,8 @@ namespace Coursework.Models
         public QuestionStatus Status { get; set; } = QuestionStatus.Opened;
 
         public int Score { get; set; } = 0;
-        //public List<int> LikedBy = new List<int>();
-        //public List<int> DislikedBy = new List<int>();
     }
-
+    
     public enum QuestionStatus
     {
         Opened,

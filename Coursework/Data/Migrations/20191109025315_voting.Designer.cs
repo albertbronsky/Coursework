@@ -3,14 +3,16 @@ using System;
 using Coursework.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Coursework.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191109025315_voting")]
+    partial class voting
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,28 +50,6 @@ namespace Coursework.Data.Migrations
                     b.HasIndex("QuestionId");
 
                     b.ToTable("Answer");
-                });
-
-            modelBuilder.Entity("Coursework.Models.AnswerVote", b =>
-                {
-                    b.Property<int>("VoteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AnswerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("OwnerId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Reaction")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("VoteId");
-
-                    b.HasIndex("AnswerId");
-
-                    b.ToTable("AnswerVote");
                 });
 
             modelBuilder.Entity("Coursework.Models.Category", b =>
@@ -133,28 +113,6 @@ namespace Coursework.Data.Migrations
                     b.HasKey("QuestionId");
 
                     b.ToTable("Question");
-                });
-
-            modelBuilder.Entity("Coursework.Models.QuestionVote", b =>
-                {
-                    b.Property<int>("VoteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("OwnerId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Reaction")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("VoteId");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("QuestionVote");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -354,24 +312,6 @@ namespace Coursework.Data.Migrations
                 });
 
             modelBuilder.Entity("Coursework.Models.Answer", b =>
-                {
-                    b.HasOne("Coursework.Models.Question", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Coursework.Models.AnswerVote", b =>
-                {
-                    b.HasOne("Coursework.Models.Answer", "Answer")
-                        .WithMany()
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Coursework.Models.QuestionVote", b =>
                 {
                     b.HasOne("Coursework.Models.Question", "Question")
                         .WithMany()
