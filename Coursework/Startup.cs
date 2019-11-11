@@ -3,7 +3,9 @@ using Coursework.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +34,8 @@ namespace Coursework
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
 
+            services.AddMvc(options => { options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()); });
+            
             services.AddControllers(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()

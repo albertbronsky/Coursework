@@ -1,0 +1,70 @@
+@page
+@model Coursework.Pages.Kek.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Question.QuestionId" />
+            <div class="form-group">
+                <label asp-for="Question.OwnerId" class="control-label"></label>
+                <input asp-for="Question.OwnerId" class="form-control" />
+                <span asp-validation-for="Question.OwnerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.Title" class="control-label"></label>
+                <input asp-for="Question.Title" class="form-control" />
+                <span asp-validation-for="Question.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.Description" class="control-label"></label>
+                <input asp-for="Question.Description" class="form-control" />
+                <span asp-validation-for="Question.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.DateCreated" class="control-label"></label>
+                <input asp-for="Question.DateCreated" class="form-control" />
+                <span asp-validation-for="Question.DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.DateModified" class="control-label"></label>
+                <input asp-for="Question.DateModified" class="form-control" />
+                <span asp-validation-for="Question.DateModified" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.Status" class="control-label"></label>
+                <select asp-for="Question.Status" class="form-control"></select>
+                <span asp-validation-for="Question.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.Score" class="control-label"></label>
+                <input asp-for="Question.Score" class="form-control" />
+                <span asp-validation-for="Question.Score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Question.CategoryId" class="control-label"></label>
+                <select asp-for="Question.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="Question.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

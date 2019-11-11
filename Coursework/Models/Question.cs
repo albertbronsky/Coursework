@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,6 +19,9 @@ namespace Coursework.Models
         public QuestionStatus Status { get; set; } = QuestionStatus.Opened;
 
         public int Score { get; set; } = 0;
+        
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
     
     public enum QuestionStatus

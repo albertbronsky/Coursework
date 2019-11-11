@@ -6,6 +6,7 @@ using Coursework.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Coursework.Pages.Questions
@@ -22,6 +23,7 @@ namespace Coursework.Pages.Questions
 
         public IActionResult OnGet()
         {
+            ViewData["CategoryId"] = new SelectList(Context.Category, "CategoryId", "Name");
             return Page();
         }
 
@@ -53,11 +55,12 @@ namespace Coursework.Pages.Questions
             var title = Question.Title;
             var description = Question.Description;
             var dateCreated = DateTime.Now;
+            var categoryId = Question.CategoryId;
             const int defaultStatus = (int) QuestionStatus.Opened;
 
             Context.Database.ExecuteSqlRaw(
-                $"INSERT INTO main.Question (OwnerId, Title, Description, DateCreated, DateModified, Status) " +
-                $"VALUES ('{ownerId}', '{title}', '{description}', '{dateCreated}', NULL, {defaultStatus});");
+                $"INSERT INTO main.Question (OwnerId, Title, Description, DateCreated, DateModified, Status, CategoryId) " +
+                $"VALUES ('{ownerId}', '{title}', '{description}', '{dateCreated}', NULL, {defaultStatus}, {categoryId});");
             await Context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
