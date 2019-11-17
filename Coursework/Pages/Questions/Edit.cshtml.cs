@@ -11,6 +11,7 @@ using Coursework.Data;
 using Coursework.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Coursework.Pages.Questions
 {
@@ -75,7 +76,12 @@ namespace Coursework.Pages.Questions
                 return Forbid();
             }
 
+            var today = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
             Question.OwnerId = question.OwnerId;
+            Question.DateModified = DateTime.Parse(today);
+            Question.DateCreated = question.DateCreated;
+            Question.CategoryId = question.CategoryId;
 
             Context.Attach(Question).State = EntityState.Modified;
 

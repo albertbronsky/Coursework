@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - Coursework</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
+    <script src="~/js/Chart.min.js" asp-append-version="true"></script>
+    <script src="~/js/moment.min.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/css/Chart.min.css"/>
 </head>
 <body>
 <header>
@@ -34,6 +37,12 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">Categories</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Reports/Index">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Index">Admin Page</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -54,7 +63,6 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
-
 @RenderSection("Scripts", false)
 </body>
 </html>

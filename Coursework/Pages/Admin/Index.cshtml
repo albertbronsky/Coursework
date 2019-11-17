@@ -1,0 +1,150 @@
+﻿@page
+@model Coursework.Pages.Admin.Index
+
+@{
+//    Layout = null;
+    ViewData["Title"] = "Admin Page";
+}
+
+<h1>Weekly rating of categories</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Category name
+        </th>
+        <th>
+            Number of posts
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.WeeklyRatings)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPosts)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+    @ViewData["result"]
+
+<div class="chart-container" style="position: relative; height:600px; width:600px">
+    <canvas id="myChart" width="600" height="600"></canvas>
+</div>
+    <script>
+    function newDate() {
+      return moment().add(days, 'd');
+    }
+    
+    var hours = [];
+    var questions = [];
+
+    @foreach (var item in Model.QuestionPerHours)
+    {
+        <text>hours.push(@Html.DisplayFor(modelItem => item.Hour));</text>
+    }
+    
+    @foreach (var item in Model.QuestionPerHours)
+    {
+        <text>questions.push(@Html.DisplayFor(modelItem => item.NumberOfQuestions));</text>
+    }
+    
+    var parsedCount = [];
+    
+    for (var i = 0; i < 24; i++) {
+    	if (hours.indexOf(i) > -1) {
+    	    parsedCount.push(questions[hours.indexOf(i)])
+    	} 
+    	else {
+            parsedCount.push(0)
+    	}
+    }
+    
+    var maxCount = Math.max.apply(Math, parsedCount);
+    
+    var config = {
+      type: 'bar',
+      data: {
+        labels: ['00:00','01:00', '02:00', '03:00', '04:00', '05:00', '06:00','07:00','08:00','09:00','10:00','11:00',
+        '12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'],
+        datasets: [{
+          label: "Number of questions per hour",
+          data: parsedCount,
+          fill: false,
+          backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(255, 159, 64, 0.2)",
+              "rgba(255, 205, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 99, 132, 0.2)",
+                            "rgba(255, 159, 64, 0.2)",
+                            "rgba(255, 205, 86, 0.2)",
+                            "rgba(75, 192, 192, 0.2)",
+                            "rgba(54, 162, 235, 0.2)",
+                            "rgba(153, 102, 255, 0.2)",
+                            "rgba(255, 99, 132, 0.2)",
+                                          "rgba(255, 159, 64, 0.2)",
+                                          "rgba(255, 205, 86, 0.2)",
+                                          "rgba(75, 192, 192, 0.2)",
+                                          "rgba(54, 162, 235, 0.2)",
+                                          "rgba(153, 102, 255, 0.2)",
+                                          "rgba(255, 99, 132, 0.2)",
+                                                        "rgba(255, 159, 64, 0.2)",
+                                                        "rgba(255, 205, 86, 0.2)",
+                                                        "rgba(75, 192, 192, 0.2)",
+                                                        "rgba(54, 162, 235, 0.2)",
+                                                        "rgba(153, 102, 255, 0.2)"],
+          borderColor: [
+              "rgb(255, 99, 132)",
+              "rgb(255, 159, 64)",
+              "rgb(255, 205, 86)",
+              "rgb(75, 192, 192)",
+              "rgb(54, 162, 235)",
+              "rgb(153, 102, 255)",
+              "rgb(255, 99, 132)",
+                            "rgb(255, 159, 64)",
+                            "rgb(255, 205, 86)",
+                            "rgb(75, 192, 192)",
+                            "rgb(54, 162, 235)",
+                            "rgb(153, 102, 255)",
+                            "rgb(255, 99, 132)",
+                                          "rgb(255, 159, 64)",
+                                          "rgb(255, 205, 86)",
+                                          "rgb(75, 192, 192)",
+                                          "rgb(54, 162, 235)",
+                                          "rgb(153, 102, 255)",
+                                          "rgb(255, 99, 132)",
+                                                        "rgb(255, 159, 64)",
+                                                        "rgb(255, 205, 86)",
+                                                        "rgb(75, 192, 192)",
+                                                        "rgb(54, 162, 235)",
+                                                        "rgb(153, 102, 255)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                   beginAtZero:true,
+                   stepSize: 1,
+                   suggestedMax: maxCount+1
+               }
+             }]
+            }
+      }
+    };
+    
+    var ctx = document.getElementById("myChart").getContext("2d");
+    new Chart(ctx, config);
+
+    	</script>

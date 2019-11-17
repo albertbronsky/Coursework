@@ -33,9 +33,7 @@ namespace Coursework.Pages.Questions
 
             Question = await _context.Question.FirstOrDefaultAsync(m => m.QuestionId == id);
             ViewData["AnswerCount"] = _context.Answer.FromSqlRaw($"SELECT * FROM main.Answer WHERE QuestionId={id} ").Count();
-//            var answerCount = _context.Answer.FromSqlInterpolated($"SELECT * FROM main.Answer WHERE QuestionId=1;").ToList();
             Answer = _context.Answer.FromSqlRaw($"SELECT * FROM main.Answer WHERE QuestionId={id};").ToList();
-//            ViewData["AnswerCount"] = answerCount;
             
             if (Question == null)
             {

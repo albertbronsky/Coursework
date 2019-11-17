@@ -39,10 +39,11 @@ namespace Coursework.Pages.Questions.Answers
             Answer.OwnerId = UserManager.GetUserId(User);
 
             //Context.Question.Add(Question);
+            var today = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             var ownerId = Answer.OwnerId;
             var message = Answer.Message;
-            var dateCreated = DateTime.Now;
+            var dateCreated = today;
 
             Context.Database.ExecuteSqlRaw(
                 "INSERT INTO main.Answer (OwnerId, Message, DateCreated, DateModified, QuestionId, Accepted, Score) " +

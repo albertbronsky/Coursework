@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Coursework.Authorization;
 using Coursework.Data;
@@ -50,11 +51,13 @@ namespace Coursework.Pages.Questions
             }
 
             //Context.Question.Add(Question);
+            var today = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            Console.WriteLine(today);
 
             var ownerId = Question.OwnerId;
             var title = Question.Title;
             var description = Question.Description;
-            var dateCreated = DateTime.Now;
+            var dateCreated = today;
             var categoryId = Question.CategoryId;
             const int defaultStatus = (int) QuestionStatus.Opened;
 

@@ -1,0 +1,149 @@
+﻿@page
+@model Coursework.Pages.Reports.Index
+
+@{
+//    Layout = null;
+    ViewData["Title"] = "Report";
+}
+
+<h1>List of the most discussed questions created today</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Question ID
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Date Created
+        </th>
+        <th>
+            Number of answers
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.PopularQuestions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfAnswers)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h1>List of the most active users</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            User
+        </th>
+        <th>
+            Number of posts
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.ActiveUsers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPosts)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h1>List of top rated answers</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Answer ID
+        </th>
+        <th>
+            Question ID
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            Message
+        </th>
+        <th>
+            Score
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.TopAnswers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h1>List of top 10 countries by active users</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Country name
+            </th>
+            <th>
+                Number of posts
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.TopCountries)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPosts)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
