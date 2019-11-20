@@ -40,8 +40,8 @@
         </dt>
         <dd class="col-sm-10" class="vote-value">
             <span class="Question" id="@Html.DisplayFor(model => model.Question.QuestionId)">@Html.DisplayFor(model => model.Question.Score)</span>
-            <button onclick="QuestionVote(@Html.DisplayFor(model => model.Question.QuestionId), 1)">+</button>
-            <button onclick="QuestionVote(@Html.DisplayFor(model => model.Question.QuestionId), -1)">-</button>
+            <button class="btn btn-outline-primary" onclick="QuestionVote(@Html.DisplayFor(model => model.Question.QuestionId), 1)">+</button>
+            <button class="btn btn-outline-primary" onclick="QuestionVote(@Html.DisplayFor(model => model.Question.QuestionId), -1)">-</button>
         </dd>
     </dl>
 </div>
@@ -101,8 +101,8 @@
                 </td>
                 <td class="vote-value">
                     <span class="Answer" id="@Html.DisplayFor(modelItem => item.AnswerId)">@Html.DisplayFor(modelItem => item.Score)</span>
-                    <button onclick="AnswerVote(@Html.DisplayFor(modelItem => item.AnswerId), 1)">+</button>
-                    <button onclick="AnswerVote(@Html.DisplayFor(modelItem => item.AnswerId), -1)">-</button>
+                    <button class="btn btn-outline-primary" onclick="AnswerVote(@Html.DisplayFor(modelItem => item.AnswerId), 1)">+</button>
+                    <button class="btn btn-outline-primary" onclick="AnswerVote(@Html.DisplayFor(modelItem => item.AnswerId), -1)">-</button>
                 </td>
                 @*             <td> *@
                 @*                 @if ((await AuthorizationService.AuthorizeAsync( *@

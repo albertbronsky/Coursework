@@ -2,43 +2,48 @@
 @model Coursework.Pages.Admin.Index
 
 @{
-//    Layout = null;
     ViewData["Title"] = "Admin Page";
 }
 
-<h1>Weekly rating of categories</h1>
+<div id="printJS-area">
+    <h1>Weekly rating of categories</h1>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            Category name
-        </th>
-        <th>
-            Number of posts
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.WeeklyRatings)
-    {
+    <table class="table">
+        <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPosts)
-            </td>
+            <th>
+                Category name
+            </th>
+            <th>
+                Number of posts
+            </th>
         </tr>
-    }
-    </tbody>
-</table>
-    @ViewData["result"]
+        </thead>
+        <tbody>
+        @foreach (var item in Model.WeeklyRatings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfPosts)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<button type="button" class="btn btn-outline-primary" onclick="printJS('printJS-area', 'html')">
+    Print Report as .PDF
+</button>
+
 
 <div class="chart-container" style="position: relative; height:600px; width:600px">
     <canvas id="myChart" width="600" height="600"></canvas>
 </div>
-    <script>
+<script>
     function newDate() {
       return moment().add(days, 'd');
     }
@@ -148,3 +153,8 @@
     new Chart(ctx, config);
 
     	</script>
+
+
+<form method="post">
+    <input type="submit" value="Delete abandoned questions" class="btn btn-outline-danger"/>
+</form>
